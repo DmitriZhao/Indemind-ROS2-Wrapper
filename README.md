@@ -12,4 +12,4 @@
 
 ## Acknowledgements
 
-The Indemind linux driver files are achieved from [here](https://github.com/INDEMIND/Driver_Linux)
+The Indemind linux driver files are from [here](https://github.com/INDEMIND/Driver_Linux)
