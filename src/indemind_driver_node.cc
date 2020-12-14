@@ -13,6 +13,8 @@
 
 #include "indemind_driver/DriverInterface.h"
 
+// TODO: Add QoS
+
 struct IndemindDriverNode : public rclcpp::Node {
     IndemindDriverNode(const std::string &name)
          : Node(name, rclcpp::NodeOptions()){}
@@ -91,6 +93,7 @@ void print_module_flash(ModuleParamInFlash<1> module_param)
     int img_resolution = module_param._imgResolution;
     int imu_frequency = module_param._imuFrequency;
 
+    printf("#### Current Settings #####\n")
     printf("img_frequency\t%d\n", img_frequency);
     printf("img_resolution\t%d\n", img_resolution);
     printf("imu_frequency\t%d\n", imu_frequency);
@@ -196,7 +199,7 @@ void print_imu_parameters(IMUParameter param)
 
 void print_module_info(ModuleInfo info)
 {
-    printf("id:\t");
+    printf("\nid:\t");
     printf(info._id);
     printf("\ndesigner:\t");
     printf(info._designer);
@@ -257,6 +260,7 @@ void camera_callback(indem::cameraData *data)
     msg.height  = data->_height;
     msg.width   = data->_width;
     msg.data    = std::vector<unsigned char>(data->_image, data->_image + data->_size);
+    msg.step    = data->_width;
     msg.encoding = sensor_msgs::image_encodings::MONO8;
 
     // assert(camera_pub);
